@@ -27,33 +27,6 @@ async function getData() {
     // }
     marker.bindPopup(txt);
   }
-  
-  
-
-  // const container = document.getElementById("container");
-
-  // if (!data || data.length === 0) {
-  //   const root = document.createElement("p");
-  //   root.textContent = "currently there are no check-ins!";
-  //   container.append(root);
-  // } else {
-  //   for (let item of data) {
-  //     const root = document.createElement("p");
-  //     const geo = document.createElement("div");
-  //     const date = document.createElement("div");
-
-  //     geo.textContent = `location: ${item.lat.toFixed(2)}°, ${item.lon.toFixed(
-  //       2
-  //     )}°`;
-  //     const dateString = new Date(item.timestamp).toLocaleString();
-  //     date.textContent = `date: ${dateString}`;
-
-  //     root.append(geo, date);
-  //     container.append(root);
-  //     root.className = "description";
-  //   }
-  // }
-  // console.log(data);
 }
 
 getData();
