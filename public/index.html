@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>The Weather Here</h1>
+    <div>
+      <a href="/">check-in</a> | <a href="/logs/index.html">view checkins</a>
+    </div>
+    <div class="visuals">
+    <div class="details_container">
+        <span id="temperature--big"></span>
+      <img id="weather--image" src="" alt="Current weather conditions symbol">
+    </div>
+      <div class="parameters_container">
+        <div class="parameter">
+         <p>Pressure</p> <span id="pressure"></span>
+        </div>
+        <div class="parameter parameter_wind">
+          <div class="wind_icons">
+            <img id="wind-fan" src="/assets/fan-blades-icon.png">
+          <img id="wind-icon" src="/assets/direction-arrow-top-icon.png">
+          </div>
+          <p>Wind</p> <span id="wind"></span>
+          
+        </div>
+        <div class="parameter ">
+         <p>Humidity</p> <span id="humidity"></span>
+        </div>
+        <div id="parameter--aq" class="parameter">
+         <p>Air Qlty</p><span id="air--quality"></span>
+        </div>
+      </div>
+    </div>
+    <p class="description">
+      The weather here at <span id="latitude"></span>°,
+      <span id="longitude"></span>° is <span id="summary"></span> with a
+      temperature of <span id="temperature"></span>°C. </br></br>
+       The concentration of particles
+      (<span>pm 2.5</span>) is <span id="aq_value"></span> <span id="aq_units"></span>, last read on
+      <span id="aq_date"></span> (location of measuring station is: <span id="aq_location"></span>).
+    </p>
+    
+    </div>
+  </body>
+</html>
