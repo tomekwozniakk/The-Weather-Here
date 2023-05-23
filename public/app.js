@@ -30,10 +30,10 @@ if ("geolocation" in navigator) {
       "temperature--big"
     ).textContent = `${temperature}°C`;
 
-
+    let aq_data = null;
 
     if (json.aq.results) {
-      const aq_data = json.aq.results[0];
+      aq_data = json.aq.results[0];
       const pm25 = aq_data.measurements.filter(
         (result) => result.parameter === "pm25"
       );
