@@ -32,7 +32,7 @@ if ("geolocation" in navigator) {
 
     let aq_data = null;
 
-    if (json.aq.results) {
+    if (json.aq.results && json.aq.results.length > 0) {
       aq_data = json.aq.results[0];
       const pm25 = aq_data.measurements.filter(
         (result) => result.parameter === "pm25"
