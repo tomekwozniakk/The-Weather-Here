@@ -40,7 +40,7 @@ app.get("/weather/:latlon", async (request, response) => {
   const lon = latlon[1];
 
   const API_KEY = process.env.API_KEY;
-  const weather_url = `https://api.openweathermap.org/data/2.5/wather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
+  const weather_url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
   let weather_data;
   try {
     const weather_response = await fetch(weather_url);
