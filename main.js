@@ -8,7 +8,9 @@ const app = express();
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Starting server on ${port}`));
 app.use(express.static("public"));
-app.use(express.json({ limit: "1mb" }));
+app.use(express.json({
+  limit: "1mb"
+}));
 
 const database = new Datastore("database.db");
 database.loadDatabase();
@@ -38,9 +40,15 @@ app.get("/weather/:latlon", async (request, response) => {
   const lon = latlon[1];
 
   const API_KEY = process.env.API_KEY;
-  const weather_url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
-  const weather_response = await fetch(weather_url);
-  const weather_data = await weather_response.json();
+  const weather_url = `https://api.openweathermap.org/data/2.5/wather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
+  let weather_data;
+  try {
+    const weather_response = await fetch(weather_url);
+    weather_data = await weather_response.json();
+  } catch (error) {
+    console.log(error);
+    weather_data = null;
+  }
 
   const aq_url = `https://api.openaq.org/v2/latest?coordinates=${lat},${lon}&radius=100000&limit=1&parameter=pm25&order_by=lastUpdated`;
   const aq_response = await fetch(aq_url);

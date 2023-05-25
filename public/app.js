@@ -18,17 +18,57 @@ if ("geolocation" in navigator) {
     console.log(json);
 
     const weather_data = json.weather;
+    console.log(weather_data)
 
-    const temperature = Math.round(weather_data.main.temp) || '-';
-    const wind = Math.round(weather_data.wind.speed) || '-';
-    const wind_gust = Math.round(weather_data.wind.gust) || "-";
+    let temperature = '-';
+    let wind = '-';
+    let wind_gust = "-";
+    let pressure = '-';
+    let humidity = '-';
 
-    document.getElementById("summary").textContent =
-      weather_data.weather[0].description;
+    if (weather_data && weather_data.cod !== '404') {
+
+      temperature = Math.round(weather_data.main.temp);
+      wind = Math.round(weather_data.wind.speed);
+      wind_gust = Math.round(weather_data.wind.gust);
+      pressure = weather_data.main.pressure;
+      humidity = weather_data.main.humidity;
+
+      document.getElementById("summary").textContent =
+        weather_data.weather[0].description;
+
+
+      document.getElementById(
+        "weather--image"
+      ).src = `https://openweathermap.org/img/wn/${weather_data.weather[0].icon}@4x.png`;
+
+
+      document.getElementById(
+        "wind-icon"
+      ).style.transform = `rotate(${weather_data.wind.deg - 180}deg)`;
+      document.getElementById("wind").textContent = `${wind}(${wind_gust})m/s`;
+
+      let fanSpeed;
+      fanSpeed = scale(weather_data.wind.speed, 0, 30, 3, 0);
+      console.log(fanSpeed);
+
+      document.getElementById(
+        "wind-fan"
+      ).style.animation = `fan ${fanSpeed}s linear 0s infinite both normal`;
+
+
+    }
     document.getElementById("temperature").textContent = temperature;
     document.getElementById(
       "temperature--big"
     ).textContent = `${temperature}°C`;
+    document.getElementById(
+      "pressure"
+    ).textContent = `${pressure} hPa`;
+    document.getElementById(
+      "humidity"
+    ).textContent = `${humidity}%`;
+
 
     let aq_data = null;
 
@@ -81,33 +121,6 @@ if ("geolocation" in navigator) {
       document.getElementById("air-description").textContent = 'NO AIR QUALITY READING AVAILABLE';
       document.getElementById("air--quality").textContent = '-';
     }
-
-
-    document.getElementById(
-      "weather--image"
-    ).src = `https://openweathermap.org/img/wn/${weather_data.weather[0].icon}@4x.png`;
-
-    document.getElementById(
-      "pressure"
-    ).textContent = `${weather_data.main.pressure} hPa`;
-    document.getElementById(
-      "wind-icon"
-    ).style.transform = `rotate(${weather_data.wind.deg - 180}deg)`;
-    document.getElementById("wind").textContent = `${wind}(${wind_gust})m/s`;
-
-    let fanSpeed;
-    fanSpeed = scale(weather_data.wind.speed, 0, 30, 3, 0);
-    console.log(fanSpeed);
-
-    document.getElementById(
-      "wind-fan"
-    ).style.animation = `fan ${fanSpeed}s linear 0s infinite both normal`;
-
-    document.getElementById(
-      "humidity"
-    ).textContent = `${weather_data.main.humidity}%`;
-
-
 
     const data = {
       lat,
